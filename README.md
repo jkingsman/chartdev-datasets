@@ -81,4 +81,10 @@ gunzip -c ./data/10-chinook.sql.gz | sudo su - postgres -c "psql"
 gunzip -c ./data/20-dundersign.sql.gz | sudo su - postgres -c "psql"
 gunzip -c ./data/30-ufosightings.sql.gz | sudo su - postgres -c "psql"
 cat ./data/40-readonlyuser.sql | sudo su - postgres -c "psql"
+
+# if you forget to comment out the superuser lockout, fix it with
+sudo service postgresql stop
+sudo -u postgres /usr/lib/postgresql/13/bin/postgres  --single -D /etc/postgresql/13/main/ chinook
+ALTER USER postgres WITH LOGIN;
+sudo service postgresql start
 ```
