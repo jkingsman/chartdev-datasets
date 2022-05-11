@@ -88,3 +88,8 @@ sudo -u postgres /usr/lib/postgresql/13/bin/postgres  --single -D /etc/postgresq
 ALTER USER postgres WITH LOGIN;
 sudo service postgresql start
 ```
+
+## Licenses
+
+* [Chinook Copyright (c) 2008-2017 Luis Rocha (MIT)](https://github.com/lerocha/chinook-database/blob/master/LICENSE.md)
+* Dundersign and UFO Sightings Copyright Chartio, Inc.
