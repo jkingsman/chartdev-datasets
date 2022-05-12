@@ -1,0 +1,61 @@
+-- Create read-only roles
+CREATE ROLE chartdev WITH LOGIN PASSWORD 'marten'
+NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION VALID UNTIL 'infinity';
+
+CREATE ROLE chinook WITH LOGIN PASSWORD 'marten'
+NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION VALID UNTIL 'infinity';
+
+CREATE ROLE dundersign WITH LOGIN PASSWORD 'marten'
+NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION VALID UNTIL 'infinity';
+
+CREATE ROLE ufosightings WITH LOGIN PASSWORD 'marten'
+NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION VALID UNTIL 'infinity';
+
+CREATE ROLE northwind WITH LOGIN PASSWORD 'marten'
+NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION VALID UNTIL 'infinity';
+
+-- Grant usage on chinook
+\connect chinook
+GRANT USAGE ON SCHEMA public TO chartdev;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO chartdev;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO chartdev;
+
+GRANT USAGE ON SCHEMA public TO chinook;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO chinook;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO chinook;
+
+-- Grant usage on dundersign
+\connect dundersign
+GRANT USAGE ON SCHEMA public TO chartdev;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO chartdev;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO chartdev;
+
+GRANT USAGE ON SCHEMA public TO dundersign;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO dundersign;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO dundersign;
+
+-- Grant usage on ufosightings
+\connect ufosightings
+GRANT USAGE ON SCHEMA public TO chartdev;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO chartdev;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO chartdev;
+
+GRANT USAGE ON SCHEMA public TO ufosightings;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO ufosightings;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO ufosightings;
+
+-- Grant usage on northwind
+\connect northwind
+GRANT USAGE ON SCHEMA public TO chartdev;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO chartdev;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO chartdev;
+
+GRANT USAGE ON SCHEMA public TO northwind;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO northwind;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO northwind;
+
+-- Drop default database created on startup
+DROP DATABASE IF EXISTS postgres;
+
+-- Lock out superuser
+ALTER USER postgres WITH NOLOGIN;

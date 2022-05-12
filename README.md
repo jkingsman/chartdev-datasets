@@ -5,21 +5,23 @@
 ### Quickstart
 
 ```bash
-docker run -p 5432:5432 -e POSTGRES_PASSWORD=x jkingsman/chartdev-datasets:latest
+docker run -p 5432:5432 jkingsman/chartdev-datasets:latest
 psql postgres://chartdev:marten@127.0.0.1:5432/chinook
 # or
 psql postgres://chartdev:marten@127.0.0.1:5432/dundersign
 # or
 psql postgres://chartdev:marten@127.0.0.1:5432/ufosightings
+# or
+psql postgres://chartdev:marten@127.0.0.1:5432/northwind
 ```
 
 Running `run_database.sh` will build and boot a three databases with demo data:
 
-* The standard `chinook` dataset
+* The standard `chinook` and `Northwind Traders` datasets
 * Demo dataset `dundersign`
 * Legacy demo dataset `ufosightings`
 
-These are accessible with the read-only user `chartdev` (password `marten`) which has access to all databases, and individual users with the name of the database (`chinook`, `dundersign`, `ufosightings`) with the same password (`marten`) which have access only to the database that shares their name.
+These are accessible with the read-only user `chartdev` (password `marten`) which has access to all databases, and individual users with the name of the database (`chinook`, `dundersign`, `ufosightings`, `northwind`) with the same password (`marten`) which have access only to the database that shares their name.
 
 These are customizable in `data/40-readonlyuser.sql`; this script also disables login for the superuser `postgres` which you can reenable if you would like a non-read-only user.
 
@@ -92,4 +94,5 @@ sudo service postgresql start
 ## Licenses
 
 * [Chinook Copyright (c) 2008-2017 Luis Rocha (MIT)](https://github.com/lerocha/chinook-database/blob/master/LICENSE.md)
+* [Northwind Copyright (c) Microsoft Corporation (MIT)](https://github.com/microsoft/sql-server-samples/blob/master/license.txt)
 * Dundersign and UFO Sightings Copyright Chartio, Inc.
